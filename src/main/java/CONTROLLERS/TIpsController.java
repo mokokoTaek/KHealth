@@ -20,11 +20,13 @@ public class TIpsController extends HttpServlet {
 			throws ServletException, IOException {
 		
 		
+		
 
 		String uri = request.getRequestURI();
 
 		request.setCharacterEncoding("utf8");
-
+		System.out.println(uri);
+		
 		try {
 			
 			if(uri.equals("/insert.tips")) {
@@ -116,6 +118,7 @@ public class TIpsController extends HttpServlet {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 		}
 
 	}

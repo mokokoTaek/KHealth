@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,9 @@
 	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="css/styles.css" rel="stylesheet" />
-<script src="https://code.jquery.com/jquery-3.6.1.js"> </script>
+<script src="https://code.jquery.com/jquery-3.6.1.js">
+	
+</script>
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
 	charset="utf-8"></script>
@@ -26,10 +29,11 @@
 </head>
 <style>
 #contents {
- border:none;
+	border: none;
 }
 </style>
 <body class="d-flex flex-column h-100">
+
 
 	<main class="flex-shrink-0">
 		<!-- Navigation-->
@@ -47,6 +51,7 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
 						<li class="nav-item"><a class="nav-link"
 							href="/admin/admindummy.jsp">Admin</a></li>
 						<li class="nav-item"><a class="nav-link" href="/index.jsp">Home</a></li>
@@ -55,19 +60,25 @@
 						<li class="nav-item"><a class="nav-link" href="/list.tips">Tips</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="market/MarketDummy.jsp">Market</a></li>
-						<li class="nav-item"><a class="nav-link"href="/list.qna"> 
-							 Q&A</a></li>
+						<li class="nav-item"><a class="nav-link" href="/list.qna">
+								Q&A</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="login/LoginDummy.jsp">Login</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="mypage/MypageDummy.jsp">Mypage</a></li>
 						<li class="nav-item"><a class="nav-link"
 							href="login/SigninDummy.jsp">Signin</a></li>
+							
 					</ul>
 				</div>
 			</div>
+			<c:choose>
+				<c:when test="${loginID != null}">
+					<!-- 로그인을 한 사용자 -->
+					<a style="color: white">${loginID }님 안녕하세요? &nbsp; &nbsp; &nbsp;</a>
+				</c:when>
+			</c:choose>
 		</nav>
-
 
 
 		<header class="bg-dark py-5">
@@ -360,17 +371,18 @@
 
 
 <script type="text/javascript">
-  var naver_id_login = new naver_id_login("_5b0QUYbnHTk93odBRsA", "http://localhost/index.jsp");
-  // 접근 토큰 값 출력
- // alert(naver_id_login.oauthParams.access_token);
-  // 네이버 사용자 프로필 조회
-  naver_id_login.get_naver_userprofile("naverSignInCallback()");
-  // 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
-  function naverSignInCallback() {
-    //alert(naver_id_login.getProfileData('email'));
-    //alert(naver_id_login.getProfileData('nickname'));
-    //alert(naver_id_login.getProfileData('age'));
-  }
+	var naver_id_login = new naver_id_login("_5b0QUYbnHTk93odBRsA",
+			"http://localhost/index.jsp");
+	// 접근 토큰 값 출력
+	// alert(naver_id_login.oauthParams.access_token);
+	// 네이버 사용자 프로필 조회
+	naver_id_login.get_naver_userprofile("naverSignInCallback()");
+	// 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+	function naverSignInCallback() {
+		//alert(naver_id_login.getProfileData('email'));
+		//alert(naver_id_login.getProfileData('nickname'));
+		//alert(naver_id_login.getProfileData('age'));
+	}
 </script>
 
 </html>

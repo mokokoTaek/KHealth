@@ -246,7 +246,7 @@
          <form acition="" method="post" id="mypageFrm">
             <div class="row">
                <div class="col-md-3">
-                  <div class="profile-img">${dto.nickname }</div>
+                  <div class="profile-img"></div>
                </div>
 
                <!-- 메뉴 Tab들 -->
@@ -269,10 +269,6 @@
                            data-toggle="tab" href='#' onclick="commentsTab()" role="tab"
                            aria-controls="home" aria-selected="true">Comments</a></li>
 
-                        <li class="nav-item"><a class="nav-link active"
-                           id="orderlist-tab" data-toggle="tab" href='#'
-                           onclick="orderlistTab()" role="tab" aria-controls="home"
-                           aria-selected="true">Orderlist</a></li>
                      </ul>
 
                      <!-- Comments 눌렀을 때 나오는 테이블 -->
@@ -308,6 +304,7 @@
                         let test = true;
                         function commentsTab() {
                            if(test){
+                        	  $("#leftMenu").css("display","none");
                               $("#information").css("display", "none");
                               $("#mypageBoard").css("display", "none");
                               $("#mypageComments").css("display", "block");
@@ -356,6 +353,7 @@
                         let test2 = true;
                         function boardTab() {
                            if(test2){
+                        	  $("#leftMenu").css("display","none");
                               $("#information").css("display", "none");
                               $("#mypageComments").css("display", "none");
                               $("#mypageBoard").css("display", "block");
@@ -415,28 +413,20 @@
             </div>
 
             <!-- 왼쪽에 있는 버튼들 -->
-            <div class="row">
-               <div class="col-md-3">
-                  <div class="profile-work">
-                     <p>My Page</p>
-                     <button class="mypageBtn" id="informationBtn" type=button>프로필
-                        정보</button>
-                     <br />
-                     <button class="mypageBtn" id="modifyBtn" type=button>프로필
-                        수정</button>
-                     <br />
-                     <button class="mypageBtn" id="boardBtn" type=button>작성한
-                        글</button>
-                     <br />
-                     <button class="mypageBtn" id="commentBtn" type=button>작성한
-                        댓글</button>
-                     <br />
-                     <p>Order</p>
-                     <button class="mypageBtn" id="orderlistBtn" type=button>구매
-                        내역</button>
-                     <br />
-                  </div>
-               </div>
+				<div class="row" id="leftMenu">
+					<div class="col-md-3">
+						<div class="profile-work">
+							<p>My Page</p>
+							<a href="/mypage.mem" id="aboutBtn">프로필 정보</a><br />
+							<a href='#' onclick="modifyTab()" id="modifyBtn">프로필 수정</a>
+							<p>Order</p>
+							<a href="/orderhistory.mypage?cpage=1" id="buylistBtn">구매 내역</a>
+							
+						</div>
+					</div>
+                     
+   
+
                <script>
                   $("#mypageInformation").on("click", function () {
                      location.href = "/mypage.mem"
@@ -517,14 +507,16 @@
                         </div>
                      </div>
                   </div>
+                  
                </div>
             </div>
 
          </form>
       </div>
 
-<!-- 수정완료 버튼이 나오는 곳 -->
-      <div class="container mb-5" id=btnArea>
+<!-- 관리자 버튼이 나오는 곳 -->
+      <div class="container mb-5">
+      <button id=btnArea>관리자 페이지로 이동</button>
       </div>
       
 
@@ -539,14 +531,15 @@
          modifyCancel.text("취소");
          modifyCancel.addClass("btn");
 
-         $("#modifyBtn").on("click", function () {
-         $(".modify").attr("contenteditable", "true");
+         function modifyTab() {
 
-            $("#btnArea").append(modifyOk);
-            $("#btnArea").append(modifyCancel);
-            })
+         	$(".modify").attr("contenteditable", "true");
 
-         modifyOk.on("click", function () {
+            $("#modifyBtn").after(modifyCancel);
+            $("#modifyBtn").after(modifyOk);
+            }
+
+         	modifyOk.on("click", function () {
             $("#mypageFrm").attr("action", "/update.mem")
             $("#input_modify_nickname").val($("#modify_nickname").text());
             $("#input_modify_mail").val($("#modify_mail").text());

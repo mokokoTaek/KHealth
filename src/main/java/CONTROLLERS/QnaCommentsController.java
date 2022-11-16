@@ -47,21 +47,22 @@ public class QnaCommentsController extends HttpServlet {
 				
 				
 			}else if(uri.equals("/delete.comments")) {
+				int qnaCms_parent_seq = Integer.parseInt(request.getParameter("qnaCms_parent_seq"));
 				int qnaCms_seq = Integer.parseInt(request.getParameter("qnaCms_seq"));
 				
 				int result = QnaCommentsDAO.getInstance().delete(qnaCms_seq);
-				response.sendRedirect("/list.qna?cpage=1");
+				response.sendRedirect("/detail.qna?qna_seq="+qnaCms_parent_seq);
 				
 			}else if(uri.equals("/update.comments")) {
 				try {
-					
+					int qnaCms_parent_seq = Integer.parseInt(request.getParameter("qnaCms_parent_seq"));
 					String qnaCms_writer = (String)(request.getSession().getAttribute("loginID"));
 					int qnaCms_seq = Integer.parseInt(request.getParameter("qnaCms_seq"));
 					String qnaCms_contents = request.getParameter("contentsComments");
 
 					int result = QnaCommentsDAO.getInstance().update(qnaCms_contents, qnaCms_seq);
 					
-					response.sendRedirect("/list.qna?cpage=1");
+					response.sendRedirect("/detail.qna?qna_seq="+qnaCms_parent_seq);
 				}catch (Exception e) {
 					e.printStackTrace();
 					

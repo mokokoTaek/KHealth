@@ -243,13 +243,14 @@
 						<!-- <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" /> -->
 					</div>
 				</div>
-				<div class="row">
+				<div class="row" id="leftMenu">
 					<div class="col-md-3">
 						<div class="profile-work">
 							<p>My Page</p>
-							<a href="/mypage.mem">프로필 정보</a><br />
+							<a href="/mypage.mem" id="aboutBtn">프로필 정보</a><br />
+							<a href='#' onclick="modifyTab()" id="modifyBtn">프로필 수정</a>
 							<p>Order</p>
-							<a href="/orderhistory.mypage?cpage=1">구매 내역</a>
+							<a href="/orderhistory.mypage?cpage=1" id="buylistBtn">구매 내역</a>
 						</div>
 					</div>
 					<div class="col-md-9">

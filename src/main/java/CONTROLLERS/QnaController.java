@@ -163,11 +163,10 @@ public class QnaController extends HttpServlet {
 				
 				int result = QnaDAO.getInstance().updateBySeq(qna_title, qna_contents, qna_seq);
 				
-				response.sendRedirect("/list.qna?cpage=1");	
+				response.sendRedirect("/detail.qna?qna_seq="+qna_seq);	
 
 			}else if(uri.equals("/gomodify.qna")) {
 				int qna_seq = Integer.parseInt(request.getParameter("qna_seq"));
-				System.out.println(qna_seq);
 				QnaDTO dto = QnaDAO.getInstance().selectBySeq(qna_seq);
 				request.setAttribute("dto", dto);
 				request.getRequestDispatcher("/qna/QnaModify.jsp").forward(request, response);

@@ -222,7 +222,7 @@
 												value="${list.qnaCms_seq }">
 											<input type=hidden name="contentsComments"
 												id="input_contentsComments">
-												<input type=hidden name =qnaCms_parent_seq"
+												<input type=hidden name ="qnaCms_parent_seq"
 												value="${list.qnaCms_parent_seq }">
 											<div class="d-flex mb-4 mt-4">
 												<!-- Parent comment-->
@@ -320,7 +320,8 @@
 		
 		if(reallydel){
 			let target = $(this).attr("qnaCms_seq");
-			location.href = "/delete.comments?qnaCms_seq="+target;
+			$("#detailFrm").attr("action","/delete.comments?qnaCms_seq="+target+"");
+			$("#detailFrm").submit();
 		}else{
 			return;
 		}
@@ -360,7 +361,7 @@
      
      
         $("#back").on("click",function(){
-         history.back(); //뒤로가기기능이랑 동일.
+        	location.href = "/list.qna?cpage=1";
          })
            $("#delete").on("click",function(){
         	   let reallydel = confirm("정말로 삭제하시겠습니까?");

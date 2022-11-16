@@ -27,7 +27,7 @@ public class memberController extends HttpServlet {
 		String uri = request.getRequestURI();
 		System.out.println(uri);
 		try {
-			if (uri.equals("/login/complete.mem")) {
+			if (uri.equals("/complete.mem")) {
 				String id = request.getParameter("ID");
 				String passwd = request.getParameter("passwd");
 				String name = request.getParameter("nama");
@@ -43,7 +43,7 @@ public class memberController extends HttpServlet {
 				PasswdSha sha = new PasswdSha();
 				String cryptopw = sha.encrypt(passwd);
 				System.out.println(cryptopw);
-				int result = dao.insert(id, cryptopw, name, launch_date, nickname, 0, mail, number, zipcode, post1,
+				int result = dao.insert(id, passwd, name, launch_date, nickname, 0, mail, number, zipcode, post1,
 						post2);
 				response.sendRedirect("/");
 			} else if (uri.equals("/login.mem")) {

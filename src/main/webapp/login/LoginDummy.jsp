@@ -148,7 +148,7 @@ body {
 				"http://127.0.0.1/");
 		var state = naver_id_login.getUniqState();
 		naver_id_login.setButton("green", 3, 40);
-		naver_id_login.setDomain("http://localhost/login/LoginDummy.jsp");
+		naver_id_login.setDomain("http://3.34.18.235/login/LoginDummy.jsp");
 		naver_id_login.setState(state);
 		naver_id_login.setPopup();
 		naver_id_login.init_naver_id_login();

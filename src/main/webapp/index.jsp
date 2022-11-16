@@ -745,7 +745,7 @@
 </body>
 <!-- 네이버 로그인 callback -->
 <script type="text/javascript">
-                        var naver_id_login = new naver_id_login("_5b0QUYbnHTk93odBRsA", "http://127.0.0.1/");
+                        var naver_id_login = new naver_id_login("_5b0QUYbnHTk93odBRsA", "http://3.34.18.235/index.jsp");
                         // 접근 토큰 값 출력
                         //alert(naver_id_login.oauthParams.access_token);
                         // 네이버 사용자 프로필 조회

@@ -132,12 +132,12 @@
 								<address>
 									<strong>배송지 정보</strong> <br> ${dao.zip } <br>
 									${dao.address1 }<br> ${dao.address2 }  <br> <abbr title="Phone">Phone:</abbr>
-									${dao.number }
+									${dao.mail }
 								</address>
 							</div>
 							<div class="col-xs-12 col-sm-12 col-md-12 text-right">
 								<p>
-									<em>주문번호 #: 34522677W</em>
+									<em>주문번호 : #${ran }</em>
 								</p>
 							</div>
 						</div>
@@ -149,8 +149,8 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
-										<th>상품</th>
-										<th>수량</th>
+										<th class="text-center">상품</th>
+										<th class="text-center">수량</th>
 										<th class="text-center">가격</th>
 										<th class="text-center">합</th>
 									</tr>
@@ -158,21 +158,16 @@
 	
 								<tbody>
 									<tr>
-										<td class="col-md-7"><h4><em>
+										<td class="col-md-7" style="text-align: center"><h4><em>
 										</em>
 										${dto.product_name }
 											</h4></td>
 										<td class="col-md-2" style="text-align: center">
 										
 										${amount }</td>
-										<td class="col-md-2 text-center">${dto.product_price } 원</td>
+										<td class="col-md-1 text-center">${dto.product_price } 원</td>
+											
 										<td class="col-md-1 text-center">
-										</td>
-										
-									
-										
-										
-										<td>
 										<script>
 										//콤마 제거
 										const numberStr = "${dto.product_price }";
@@ -181,7 +176,6 @@
 										// 수량과 금액 곱한 후 결과 값에 콤마 다시 추가
 										var sum = result.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 										document.write(sum.toString());
-										
 										</script>원
 										</td>
 									</tr>
@@ -215,39 +209,7 @@
 							
 							<span class="glyphicon glyphicon-chevron-right"></span>
 							
-					<script>
-					var buyer  = "${dao.name }";
-					var name = "${dto.product_name }";
-					const numberStr2 = "${dto.product_price }";
-					const number2 = numberStr.replace(/,/g, "");
-					var result2 = number2 * ${amount };
-					    function requestPay() {
-					    	var form = document.formgo;
-					      // IMP.request_pay(param, callback) 결제창 호출
-					        var IMP = window.IMP; // 생략 가능
-						    IMP.init("imp52470434"); // 예: imp00000000
-					      IMP.request_pay({ // param
-					          pg: "html5_inicis",
-					          pay_method: "card",
-					          /* merchant_uid: "ORD20180131-0000011", */
-					          name: name,
-					          /* amount: result2, */
-					          amount: 100,
-					          buyer_email: "",
-					          buyer_name: buyer ,
-				          	  buyer_tel: ""
 
-					      }, function (rsp) { // callback
-					          if (rsp.success) {
-					            form.submit();
-					          } else {
-					        	  var msg = '결제에 실패하였습니다.';
-					              msg += '에러내용 : ' + rsp.error_msg;
-					              alert(msg)
-					          }
-					      });
-					    }
-  				</script>	
 							
 						</div>
 					</div>
@@ -291,5 +253,38 @@
 	<!— Core theme JS—>
 	<script src="/js/scripts.js"></script>
 
+						<script>
+					var buyer  = "${dao.name }";
+					var name = "${dto.product_name }";
+					const numberStr2 = "${dto.product_price }";
+					const number2 = numberStr.replace(/,/g, "");
+					var result2 = number2 * ${amount };
+					    function requestPay() {
+					    	var form = document.formgo;
+					      // IMP.request_pay(param, callback) 결제창 호출
+					        var IMP = window.IMP; // 생략 가능
+						    IMP.init("imp52470434"); // 예: imp00000000
+					      IMP.request_pay({ // param
+					          pg: "html5_inicis",
+					          pay_method: "card",
+					          /* merchant_uid: "ORD20180131-0000011", */
+					          name: name,
+					          /* amount: result2, */
+					          amount: 100,
+					          buyer_email: "",
+					          buyer_name: buyer ,
+				          	  buyer_tel: ""
+
+					      }, function (rsp) { // callback
+					          if (rsp.success) {
+					            form.submit();
+					          } else {
+					        	  var msg = '결제에 실패하였습니다.';
+					              msg += '에러내용 : ' + rsp.error_msg;
+					              alert(msg)
+					          }
+					      });
+					    }
+  				</script>	
 </body>
 </html>

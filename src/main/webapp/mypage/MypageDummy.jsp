@@ -150,6 +150,7 @@
 <script>
    $(function(){
       if(${member_role}){
+    	 
          let adminBtn = $("#btnArea").append("<button>");
          adminBtn.attr("type", "button");
          adminBtn.text("관리자 페이지로 이동");
@@ -268,10 +269,6 @@
                            data-toggle="tab" href='#' onclick="commentsTab()" role="tab"
                            aria-controls="home" aria-selected="true">Comments</a></li>
 
-                        <li class="nav-item"><a class="nav-link active"
-                           id="orderlist-tab" data-toggle="tab" href='#'
-                           onclick="orderlistTab()" role="tab" aria-controls="home"
-                           aria-selected="true">Orderlist</a></li>
                      </ul>
 
                      <!-- Comments 눌렀을 때 나오는 테이블 -->
@@ -307,7 +304,7 @@
                         let test = true;
                         function commentsTab() {
                            if(test){
-                        	  $("#modifyBtn").css("display","none");
+                        	  $("#leftMenu").css("display","none");
                               $("#information").css("display", "none");
                               $("#mypageBoard").css("display", "none");
                               $("#mypageComments").css("display", "block");
@@ -356,7 +353,7 @@
                         let test2 = true;
                         function boardTab() {
                            if(test2){
-                        	  $("#modifyBtn").css("display","none");
+                        	  $("#leftMenu").css("display","none");
                               $("#information").css("display", "none");
                               $("#mypageComments").css("display", "none");
                               $("#mypageBoard").css("display", "block");
@@ -416,13 +413,20 @@
             </div>
 
             <!-- 왼쪽에 있는 버튼들 -->
-            <div class="row">
-               <div class="col-md-3">
-                  <div class="profile-work">
-                  <br><br><br><br><br><br><br>
-                    <button class="mypageBtn" id="modifyBtn" type=button>프로필수정</button>
-                  </div>
-               </div>
+				<div class="row" id="leftMenu">
+					<div class="col-md-3">
+						<div class="profile-work">
+							<p>My Page</p>
+							<a href="/mypage.mem" id="aboutBtn">프로필 정보</a><br />
+							<a href='#' onclick="modifyTab()" id="modifyBtn">프로필 수정</a>
+							<p>Order</p>
+							<a href="/orderhistory.mypage?cpage=1" id="buylistBtn">구매 내역</a>
+							
+						</div>
+					</div>
+                     
+   
+
                <script>
                   $("#mypageInformation").on("click", function () {
                      location.href = "/mypage.mem"
@@ -433,8 +437,9 @@
                   $("#commentBtn").on("click", function () {
                      location.href = "/mypage.mem"
                   })
+                  <!-- 수정금지! -->
                   $("#orderlistBtn").on("click", function () {
-                     location.href = "/mypage.mem"
+                     location.href = "/orderhistory.mypage?cpage=1"
                   })
                </script>
 
@@ -526,13 +531,13 @@
          modifyCancel.text("취소");
          modifyCancel.addClass("btn");
 
-         $("#modifyBtn").on("click", function () {
-        	$("#modifyBtn").css("display","none");
+         function modifyTab() {
+
          	$(".modify").attr("contenteditable", "true");
 
             $("#modifyBtn").after(modifyCancel);
             $("#modifyBtn").after(modifyOk);
-            })
+            }
 
          	modifyOk.on("click", function () {
             $("#mypageFrm").attr("action", "/update.mem")

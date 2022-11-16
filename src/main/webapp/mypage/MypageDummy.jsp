@@ -515,8 +515,8 @@
       </div>
 
 <!-- 관리자 버튼이 나오는 곳 -->
-      <div class="container mb-5">
-      <button id=btnArea>관리자 페이지로 이동</button>
+      <div class="container mb-5" id=btnArea>
+      
       </div>
       
 
@@ -535,8 +535,8 @@
 
          	$(".modify").attr("contenteditable", "true");
 
-            $("#modifyBtn").after(modifyCancel);
-            $("#modifyBtn").after(modifyOk);
+            $("#btnArea").after(modifyCancel);
+            $("#btnArea").after(modifyOk);
             }
 
          	modifyOk.on("click", function () {

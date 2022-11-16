@@ -80,7 +80,7 @@ public class QnaController extends HttpServlet {
 					String savePath=request.getServletContext().getRealPath("/files");
 					System.out.println(savePath);
 					
-					//객체생성
+					//객체생성g
 					File fileSavePath = new File(savePath);
 					//경로안에 없으면 디렉토리 생성
 					if(!fileSavePath.exists()) {
